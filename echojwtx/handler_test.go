@@ -15,6 +15,7 @@ import (
 	"go.uber.org/zap"
 
 	"go.infratographer.com/x/echojwtx"
+	"go.infratographer.com/x/testing/auth"
 )
 
 const (
@@ -22,7 +23,7 @@ const (
 )
 
 func TestNoAuth(t *testing.T) {
-	_, issuer, closer := OAuthTestClient("testing-user", "")
+	_, issuer, closer := auth.OAuthTestClient("testing-user", "")
 	defer closer()
 
 	auth, err := echojwtx.NewAuth(context.Background(), echojwtx.AuthConfig{
@@ -120,7 +121,7 @@ func TestAudienceValidation(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			oauthClient, issuer, closer := OAuthTestClient("urn:test:user", tc.clientAudience)
+			oauthClient, issuer, closer := auth.OAuthTestClient("urn:test:user", tc.clientAudience)
 			defer closer()
 
 			auth, err := echojwtx.NewAuth(context.Background(),
