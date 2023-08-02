@@ -61,6 +61,14 @@ func WithEventHooks() ExtensionOption {
 	}
 }
 
+func WithSoftDelete() ExtensionOption {
+	return func(ex *Extension) error {
+		ex.templates = append(ex.templates, SoftDeleteTemplate)
+
+		return nil
+	}
+}
+
 // NewExtension returns an entc Extension that allows the entx package to generate
 // the schema changes and templates needed to function
 func NewExtension(opts ...ExtensionOption) (*Extension, error) {
