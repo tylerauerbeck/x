@@ -29,6 +29,9 @@ var (
 	// EventHooksTemplate adds support for generating event hooks
 	EventHooksTemplate = parseT("template/event_hooks.tmpl")
 
+	// SoftDeleteTemplate adds support for generating soft deletes
+	SoftDeleteTemplate = parseT("template/soft_deletes.tmpl")
+
 	// TemplateFuncs contains the extra template functions used by entx.
 	TemplateFuncs = template.FuncMap{
 		"contains": strings.Contains,
